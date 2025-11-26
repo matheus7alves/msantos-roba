@@ -15,7 +15,7 @@
     status = "okay";
     // mantém steps físicos do encoder (12 por padrão)
     steps = <12>;
-    resolution = <12>;
+    resolution = <24>;
 };
 
 /* Ajuste de sensibilidade do encoder:
