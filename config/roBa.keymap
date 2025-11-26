@@ -73,6 +73,14 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
+        // Encoder -> scroll de mouse (usa &msc)
+        rot_scroll: rot_scroll {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "ROT_SCROLL";
+            #sensor-binding-cells = <2>;
+            // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
+            bindings = <&msc>, <&msc>;
+        };
     };
 
     keymap {
@@ -128,7 +136,7 @@
 &trans  &trans    &trans    &trans    &sk LEFT_GUI  &trans      &mkp MB4  &mkp MB5                                &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp K_SCROLL_DOWN K_SCROLL_UP>;
+            sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
         };
 
         SCROLL {
