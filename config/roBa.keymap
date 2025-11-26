@@ -65,6 +65,20 @@
             bindings = <&macro_tap &kp MINUS>;
         };
 
+        til_a: til_a {
+            compatible = "zmk,behavior-macro";
+            label = "TIL_A_MACRO";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            bindings
+                = <&macro_press   &kp LALT>   /* segura Option */
+                , <&macro_tap     &kp N>      /* Option+N -> dead til */
+                , <&macro_release &kp LALT>   /* solta Option       */
+                , <&macro_tap     &kp A>      /* digita A           */
+                ;
+        };
+
+
     };
 
     behaviors {
@@ -106,6 +120,20 @@
             tapping-term-ms = <200>;
             bindings = <&kp Q>, <&kp EXCLAMATION>;
         };
+
+        til_dash: til_dash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TIL_DASH";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            /* hold  = &mo <layer>
+             * tap   = &kp <keycode>
+             */
+            bindings = <&mo>, <&kp>;
+        };
+
+
     };
 
     keymap {
@@ -115,7 +143,7 @@
             bindings = <
 &td_q       &kp W    &kp E             &kp R             &kp T                                             &kp Y           &kp U  &lt 5 I    &kp O    &kp P
 &td_a       &kp S    &kp D             &kp F             &kp G             &kp K_MUTE       &kp RETURN     &kp H           &kp J  &kp K      &kp L    &kp SQT
-&kp Z       &kp X    &kp C             &kp V             &kp B             &dash_macro        &lt 6 SEMI     &kp N           &kp M  &kp COMMA  &kp DOT  &kp SLASH
+&kp Z       &kp X    &kp C             &kp V             &kp B             &til_dash 7 MINUS       &lt 6 SEMI     &kp N           &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp ESCAPE  &kp TAB  &kp LEFT_CONTROL  &mt LEFT_ALT DEL  &sk LEFT_COMMAND  &lt 1 SPACE      &kp BACKSPACE  &sk LEFT_SHIFT                             &sl 2
             >;
 
@@ -181,5 +209,15 @@
 &trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR_ALL
             >;
         };
+
+        TIL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                                                   &trans  &trans  &trans  &trans  &trans
+&til_a  &trans  &trans  &trans  &trans       &trans                   &trans             &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans       &trans                   &trans             &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans       &trans                   &trans             &trans                                          &trans
+            >;
+        };
+
     };
 };
