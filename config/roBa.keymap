@@ -82,6 +82,28 @@
             // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
             bindings = <&msc>, <&msc>;
         };
+
+        // Tap dance na tecla A:
+        // 1 toque  -> A
+        // 2 toques -> @
+        td_a: td_a {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_A";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;      // pode ajustar depois se quiser mais rápido/lento
+            bindings = <&kp A>, <&kp AT>;
+        };
+
+        // Tap dance na tecla Q:
+        // 1 toque  -> Q
+        // 2 toques -> !
+        td_q: td_q {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_Q";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Q>, <&kp EXCLAMATION>;
+        };
     };
 
     keymap {
@@ -89,8 +111,8 @@
 
         default_layer {
             bindings = <
-&kp Q       &kp W    &kp E             &kp R             &kp T                                             &kp Y           &kp U  &lt 5 I    &kp O    &kp P
-&kp A       &kp S    &kp D             &kp F             &kp G             &kp K_MUTE       &kp RETURN     &kp H           &kp J  &kp K      &kp L    &kp SQT
+&td_q       &kp W    &kp E             &kp R             &kp T                                             &kp Y           &kp U  &lt 5 I    &kp O    &kp P
+&td_a       &kp S    &kp D             &kp F             &kp G             &kp K_MUTE       &kp RETURN     &kp H           &kp J  &kp K      &kp L    &kp SQT
 &kp Z       &kp X    &kp C             &kp V             &kp B             &dash_macro        &lt 6 SEMI     &kp N           &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp ESCAPE  &kp TAB  &kp LEFT_CONTROL  &mt LEFT_ALT DEL  &sk LEFT_COMMAND  &lt 1 SPACE      &kp BACKSPACE  &sk LEFT_SHIFT                             &sl 2
             >;
