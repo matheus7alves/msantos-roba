@@ -40,11 +40,6 @@
             key-positions = <0 1>;
         };
 
-        minus {
-            bindings = <&kp MINUS>;
-            key-positions = <7 8>;
-        };
-
         play {
             bindings = <&kp C_PLAY_PAUSE>;
             key-positions = <35 34>;
