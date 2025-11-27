@@ -55,12 +55,6 @@
             key-positions = <35 36>;
         };
 
-        tila {
-            bindings = <&til_a>;
-            key-positions = <10 11>;
-            timeout-ms = <100>;
-        };
-
         print {
             bindings = <&print>;
             key-positions = <31 32>;
@@ -85,14 +79,6 @@
             wait-ms = <40>;
             tap-ms = <40>;
             bindings = <&macro_tap>, <&kp MINUS>;
-        };
-
-        til_a: til_a {
-            compatible = "zmk,behavior-macro";
-            label = "TIL_A_MACRO";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&macro_tap>, <&kp TILDE &kp A>;
         };
 
         print: print {
