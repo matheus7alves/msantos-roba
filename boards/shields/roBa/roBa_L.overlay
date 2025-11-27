@@ -13,15 +13,17 @@
 
 &left_encoder {
     status = "okay";
-    // mantém steps físicos do encoder (12 por padrão)
+    // 12 detents, but hardware generates ~4 pulses per detent; match that so
+    // each physical click reports once.
     steps = <12>;
-    resolution = <24>;
+    resolution = <48>;
 };
 
 /* Ajuste de sensibilidade do encoder:
  * 1 clique físico = exatamente 1 passo lógico (LEFT/RIGHT)
- * Como o encoder tem 12 cliques por volta: triggers = 12
+ * Hardware gera ~48 pulsos por volta (4 por clique), então alinhe o número de
+ * "triggers" com esses pulsos para 1 evento por clique físico.
  */
 &sensors {
-    triggers-per-rotation = <12>;
+    triggers-per-rotation = <48>;
 };
