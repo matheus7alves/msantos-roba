@@ -57,10 +57,7 @@
             compatible = "zmk,behavior-macro";
             label = "DASH_MACRO";
             #binding-cells = <0>;
-            /* tempos um pouco maiores para garantir que o host veja o tap direitinho */
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&macro_tap &kp MINUS>;
+            bindings = <&kp MINUS>;
         };
 
         til_a: til_a {
