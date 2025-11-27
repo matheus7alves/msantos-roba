@@ -15,13 +15,5 @@
     status = "okay";
     // mantém steps físicos do encoder (12 por padrão)
     steps = <12>;
-    resolution = <24>;
-};
-
-/* Ajuste de sensibilidade do encoder:
- * 1 clique físico = exatamente 1 passo lógico (LEFT/RIGHT)
- * Como o encoder tem 12 cliques por volta: triggers = 12
- */
-&sensors {
-    triggers-per-rotation = <12>;
+    resolution = <48>;
 };
