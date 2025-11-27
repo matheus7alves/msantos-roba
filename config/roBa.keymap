@@ -35,7 +35,7 @@
             key-positions = <20 21>;
         };
 
-        hifen {
+        til {
             bindings = <&kp TILDE>;
             key-positions = <0 1>;
         };
@@ -62,18 +62,6 @@
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
-        };
-
-        dash_macro: dash_macro {
-            compatible = "zmk,behavior-macro";
-            label = "DASH_MACRO";
-            #binding-cells = <0>;
-
-            /* tempos um pouco maiores para garantir que o host veja o tap direitinho */
-
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&macro_tap>, <&kp MINUS>;
         };
 
         print: print {
