@@ -60,6 +60,11 @@
             key-positions = <10 11>;
             timeout-ms = <100>;
         };
+
+        print {
+            bindings = <&print>;
+            key-positions = <31 32>;
+        };
     };
 
     macros {
@@ -88,6 +93,14 @@
             #binding-cells = <0>;
             wait-ms = <10>;
             bindings = <&macro_tap>, <&kp TILDE &kp A>;
+        };
+
+        print: print {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LS(LG(NUMBER_4))>;
+
+            label = "PRINT";
         };
     };
 
