@@ -41,12 +41,12 @@
         };
 
         play {
-            bindings = <&kp C_PLAY_PAUSE>;
+            bindings = <&play>;
             key-positions = <35 34>;
         };
 
         next {
-            bindings = <&kp C_NEXT>;
+            bindings = <&next>;
             key-positions = <35 36>;
         };
 
@@ -70,6 +70,22 @@
             bindings = <&macro_tap>, <&kp LS(LG(NUMBER_4))>;
 
             label = "PRINT";
+        };
+
+        play: play {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LA(UP_ARROW))>;
+
+            label = "PLAY";
+        };
+
+        next: next {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LA(RIGHT))>;
+
+            label = "NEXT";
         };
     };
 
