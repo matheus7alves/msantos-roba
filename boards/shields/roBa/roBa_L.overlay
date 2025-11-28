@@ -13,7 +13,5 @@
 
 &left_encoder {
     status = "okay";
-    // mantém steps físicos do encoder (12 por padrão)
-    steps = <12>;
-    resolution = <48>;
+    steps = <36>;
 };
