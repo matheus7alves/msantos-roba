@@ -54,6 +54,31 @@
             bindings = <&print>;
             key-positions = <31 32>;
         };
+
+        telaesquerda {
+            bindings = <&telaesquerda>;
+            key-positions = <5 6>;
+        };
+
+        telameio {
+            bindings = <&telameio>;
+            key-positions = <6 7 8>;
+        };
+
+        teladireita {
+            bindings = <&teladireita>;
+            key-positions = <9 8>;
+        };
+
+        reposicionar {
+            bindings = <&none>;
+            key-positions = <28 29>;
+        };
+
+        telatoda {
+            bindings = <&telatoda>;
+            key-positions = <29 30>;
+        };
     };
 
     macros {
@@ -86,6 +111,46 @@
             bindings = <&macro_tap>, <&kp LG(LA(RIGHT))>;
 
             label = "NEXT";
+        };
+
+        telaesquerda: telaesquerda {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(LEFT_ARROW))>;
+
+            label = "TELAESQUERDA";
+        };
+
+        telameio: telameio {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(C))>;
+
+            label = "TELAMEIO";
+        };
+
+        teladireita: teladireita {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(RIGHT_ARROW))>;
+
+            label = "TELADIREITA";
+        };
+
+        redefinirtela: redefinirtela {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LC(LA(SPACE)))>;
+
+            label = "REDEFINIRTELA";
+        };
+
+        telatoda: telatoda {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(F))>;
+
+            label = "TELATODA";
         };
     };
 
@@ -172,7 +237,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
             >;
 
-            sensor-bindings = <&inc_dec_kp LEFT_ARROW RIGHT_ARROW>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOL_UP>;
         };
 
         Signs {
@@ -183,7 +248,7 @@
 &trans           &trans  &trans    &trans      &trans       &trans                    &trans                 &trans                                          &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
+            sensor-bindings = <&inc_dec_kp BACKSPACE DEL>;
         };
 
         layer_6 {
