@@ -13,5 +13,5 @@
 
 &left_encoder {
     status = "okay";
-    steps = <24>;
+    steps = <30>;
 };
