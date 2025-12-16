@@ -57,7 +57,7 @@
 
         telaesquerda {
             bindings = <&telaesquerda>;
-            key-positions = <5 6>;
+            key-positions = <5 6 7>;
         };
 
         telameio {
@@ -67,17 +67,17 @@
 
         teladireita {
             bindings = <&teladireita>;
-            key-positions = <9 8>;
+            key-positions = <9 8 7>;
         };
 
         reposicionar {
             bindings = <&redefinirtela>;
-            key-positions = <28 29>;
+            key-positions = <28 29 30>;
         };
 
         telatoda {
             bindings = <&telatoda>;
-            key-positions = <29 30>;
+            key-positions = <29 30 31>;
         };
     };
 
