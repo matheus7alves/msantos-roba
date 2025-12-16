@@ -71,7 +71,7 @@
         };
 
         reposicionar {
-            bindings = <&none>;
+            bindings = <&redefinirtela>;
             key-positions = <28 29>;
         };
 
