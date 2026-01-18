@@ -186,6 +186,19 @@ td_scroll: td_scroll {
         <&sl 5>;             /* double tap */
 };
 
+tap_key_hold_layer: tap_key_hold_layer {
+    compatible = "zmk,behavior-hold-tap";
+    label = "TAP_KEY_HOLD_LAYER";
+    #binding-cells = <2>;
+
+    flavor = "tap-preferred";
+    tapping-term-ms = <180>;
+
+    /* tap = key
+     * hold = momentary layer
+     */
+    bindings = <&mo>, <&kp>;
+};
 
          mo_kp: mo_kp {
             compatible = "zmk,behavior-hold-tap";
