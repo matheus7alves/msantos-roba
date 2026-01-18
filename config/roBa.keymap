@@ -155,59 +155,53 @@
     };
 
     behaviors {
-
-/* Tap = MB3
+        /* Tap = MB3
  * Hold = Momentary layer 5 (SCROLL)
  */
-mo_scroll: mo_scroll {
-    compatible = "zmk,behavior-hold-tap";
-    label = "MO_SCROLL";
-    #binding-cells = <2>;
 
-    flavor = "tap-preferred";
-    tapping-term-ms = <160>;
+        mo_scroll: mo_scroll {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MO_SCROLL";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <160>;
+            bindings = <&mo>, <&mkp>;
+        };
 
-    bindings = <&mo>, <&mkp>;
-};
-
-/* Tap-dance:
+        /* Tap-dance:
  * 1 tap  -> MB3
  * 2 taps -> Sticky layer 5 (SCROLL)
  */
-td_scroll: td_scroll {
-    compatible = "zmk,behavior-tap-dance";
-    label = "TD_SCROLL";
-    #binding-cells = <0>;
 
-    tapping-term-ms = <220>;
+        td_scroll: td_scroll {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_SCROLL";
+            #binding-cells = <0>;
+            tapping-term-ms = <220>;
+            bindings = <&mo_scroll 5 MB3>, /* single tap */, <&sl 5>;
+             /* double tap */
+        };
 
-    bindings =
-        <&mo_scroll 5 MB3>,  /* single tap */
-        <&sl 5>;             /* double tap */
-};
-
-tap_key_hold_layer: tap_key_hold_layer {
-    compatible = "zmk,behavior-hold-tap";
-    label = "TAP_KEY_HOLD_LAYER";
-    #binding-cells = <2>;
-
-    flavor = "tap-preferred";
-    tapping-term-ms = <180>;
-
-    /* tap = key
-     * hold = momentary layer
-     */
-    bindings = <&mo>, <&kp>;
-};
-
-         mo_kp: mo_kp {
+        tap_key_hold_layer: tap_key_hold_layer {
             compatible = "zmk,behavior-hold-tap";
-            label = "MO_KP";
+            label = "TAP_KEY_HOLD_LAYER";
             #binding-cells = <2>;
-
             flavor = "tap-preferred";
             tapping-term-ms = <180>;
 
+            /* tap = key
+     * hold = momentary layer
+     */
+
+            bindings = <&mo>, <&kp>;
+        };
+
+        mo_kp: mo_kp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MO_KP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <180>;
             bindings = <&mo>, <&kp>;
         };
 
@@ -285,10 +279,10 @@ tap_key_hold_layer: tap_key_hold_layer {
 
         default_layer {
             bindings = <
-&kp Q       &kp W               &kp E                  &kp R               &kp T                                           &kp Y           &kp U  &kp I      &kp O    &kp P
-&kp A       &mt LEFT_CONTROL S  &mt LEFT_ALT D         &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RETURN       &kp H           &kp J  &kp K      &kp L    &kp SQT
-&kp Z       &kp X               &kp C                  &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp ESCAPE  &kp TAB             &mo_mouse_click 5 MB3  &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                             &mkp MB4
+&kp Q       &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
+&kp A       &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
+&kp Z       &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
+&kp ESCAPE  &kp TAB             &td_scroll      &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &mkp MB4
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
@@ -327,10 +321,10 @@ tap_key_hold_layer: tap_key_hold_layer {
 
         MOUSE {
             bindings = <
-&kp Q    &kp W               &kp E                  &kp R               &kp T                                           &kp Y           &kp U  &kp I      &kp O    &kp P
-&kp A    &mt LEFT_CONTROL S  &mt LEFT_ALT D         &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RET          &kp H           &kp J  &kp K      &kp L    &kp SQT
-&kp Z    &kp X               &kp C                  &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA  &kp DOT  &kp FSLH
-&kp ESC  &kp TAB             &mo_mouse_click 5 MB3  &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                             &mkp MB4
+&kp Q    &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
+&kp A    &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RET          &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
+&kp Z    &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp FSLH
+&kp ESC  &kp TAB             &td_scroll      &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                                           &mkp MB4
             >;
 
             sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
