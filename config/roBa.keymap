@@ -174,13 +174,17 @@
  */
 
         td_scroll: td_scroll {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_SCROLL";
-            #binding-cells = <0>;
-            tapping-term-ms = <220>;
-            bindings = <&mo_scroll 5 MB3>, /* single tap */, <&sl 5>;
-             /* double tap */
-        };
+    compatible = "zmk,behavior-tap-dance";
+    label = "TD_SCROLL";
+    #binding-cells = <0>;
+    tapping-term-ms = <220>;
+
+    /* 1 tap  -> mo_scroll (tap = MB3, hold = MO 5)
+     * 2 taps -> sticky layer 5
+     */
+    bindings = <&mo_scroll 5 MB3 &sl 5>;
+};
+
 
         tap_key_hold_layer: tap_key_hold_layer {
             compatible = "zmk,behavior-hold-tap";
