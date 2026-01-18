@@ -155,6 +155,17 @@
     };
 
     behaviors {
+         mo_kp: mo_kp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MO_KP";
+            #binding-cells = <2>;
+
+            flavor = "tap-preferred";
+            tapping-term-ms = <180>;
+
+            bindings = <&mo>, <&kp>;
+        };
+
         mo_mouse_click: mo_mouse_click {
             compatible = "zmk,behavior-hold-tap";
             label = "MO_MOUSE_CLICK";
