@@ -207,7 +207,7 @@ sl_scroll: sl_scroll {
 
     bindings =
         <&mo_scroll 5 MB3>,  /* 1 tap */
-        <&sl_scroll>;      /* double tap */
+        <&sl_scroll 5>;      /* double tap */
 };
 
         tap_key_hold_layer: tap_key_hold_layer {
