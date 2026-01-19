@@ -176,7 +176,7 @@
 
         /* ORDEM: <HOLD>, <TAP> */
         bindings = <&kp LEFT_COMMAND>, <&mouse_mb1>;
-    };jj
+    };
 
         mo_scroll: mo_scroll {
             compatible = "zmk,behavior-hold-tap";
