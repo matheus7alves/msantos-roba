@@ -182,23 +182,32 @@
             bindings = <&mo>, <&mkp>;
         };
 
+
+sl_scroll: sl_scroll {
+    compatible = "zmk,behavior-sticky-layer";
+    label = "SL_SCROLL";
+    #binding-cells = <1>;
+
+    release-after-ms = <60000>; /* 60 segundos */
+};
+
+
+
         /* Tap-dance:
  * 1 tap  -> MB3
  * 2 taps -> Sticky layer 5 (SCROLL)
  */
 
-        td_scroll: td_scroll {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_SCROLL";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
+       td_scroll: td_scroll {
+    compatible = "zmk,behavior-tap-dance";
+    label = "TD_SCROLL";
+    #binding-cells = <0>;
+    tapping-term-ms = <150>;
 
-            /* 1 tap  -> mo_scroll (tap = MB3, hold = MO 5)
-     * 2 taps -> sticky layer 5
-     */
-
-            bindings = <&mo_scroll 5 MB3 &sl 5>;
-        };
+    bindings =
+        <&mo_scroll 5 MB3>,  /* 1 tap */
+        <&sl_scroll 5>;      /* double tap */
+};
 
         tap_key_hold_layer: tap_key_hold_layer {
             compatible = "zmk,behavior-hold-tap";
