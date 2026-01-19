@@ -22,17 +22,72 @@
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_0";
         };
 
-        print { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LS(LG(NUMBER_4))>; };
-        play  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LA(UP_ARROW))>; };
-        next  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LA(RIGHT))>; };
+        print: print {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LS(LG(NUMBER_4))>;
 
-        telaesquerda { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(LEFT_ARROW))>; };
-        telameio     { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(C))>; };
-        teladireita  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(RIGHT_ARROW))>; };
-        redefinirtela{ compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LC(LA(SPACE)))>; };
-        telatoda     { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(F))>; };
+            label = "PRINT";
+        };
+
+        play: play {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LA(UP_ARROW))>;
+
+            label = "PLAY";
+        };
+
+        next: next {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LA(RIGHT))>;
+
+            label = "NEXT";
+        };
+
+        telaesquerda: telaesquerda {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(LEFT_ARROW))>;
+
+            label = "TELAESQUERDA";
+        };
+
+        telameio: telameio {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(C))>;
+
+            label = "TELAMEIO";
+        };
+
+        teladireita: teladireita {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(RIGHT_ARROW))>;
+
+            label = "TELADIREITA";
+        };
+
+        redefinirtela: redefinirtela {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LG(LC(LA(SPACE)))>;
+
+            label = "REDEFINIRTELA";
+        };
+
+        telatoda: telatoda {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(LA(F))>;
+
+            label = "TELATODA";
+        };
     };
 
     behaviors {
