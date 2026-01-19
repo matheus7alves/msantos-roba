@@ -15,30 +15,7 @@
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
 
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
-        til {
-            bindings = <&kp TILDE>;
-            key-positions = <0 1>;
-        };
-
-        play { bindings = <&play>; key-positions = <35 34>; };
-        next { bindings = <&next>; key-positions = <35 36>; };
-        print { bindings = <&print>; key-positions = <31 32>; };
-
-        telaesquerda { bindings = <&telaesquerda>; key-positions = <5 6 7>; };
-        telameio      { bindings = <&telameio>;      key-positions = <6 7 8>; };
-        teladireita   { bindings = <&teladireita>;   key-positions = <9 8 7>; };
-
-        reposicionar { bindings = <&redefinirtela>; key-positions = <28 29 30>; };
-        telatoda     { bindings = <&telatoda>;       key-positions = <29 30 31>; };
-    };
 
     macros {
         to_layer_0: to_layer_0 {
@@ -109,6 +86,31 @@
 
         td_a { compatible = "zmk,behavior-tap-dance"; bindings = <&kp A &kp AT>; };
         td_q { compatible = "zmk,behavior-tap-dance"; bindings = <&kp Q &kp EXCLAMATION>; };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        double_quotation {
+            bindings = <&kp DOUBLE_QUOTES>;
+            key-positions = <20 21>;
+        };
+
+        til {
+            bindings = <&kp TILDE>;
+            key-positions = <0 1>;
+        };
+
+        play { bindings = <&play>; key-positions = <35 34>; };
+        next { bindings = <&next>; key-positions = <35 36>; };
+        print { bindings = <&print>; key-positions = <31 32>; };
+
+        telaesquerda { bindings = <&telaesquerda>; key-positions = <5 6 7>; };
+        telameio      { bindings = <&telameio>;      key-positions = <6 7 8>; };
+        teladireita   { bindings = <&teladireita>;   key-positions = <9 8 7>; };
+
+        reposicionar { bindings = <&redefinirtela>; key-positions = <28 29 30>; };
+        telatoda     { bindings = <&telatoda>;       key-positions = <29 30 31>; };
     };
 
     keymap {
