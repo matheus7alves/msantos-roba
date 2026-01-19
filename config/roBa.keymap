@@ -12,18 +12,6 @@
 &trackball {
     automouse-layer = <4>;
     scroll-layers = <5>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
 };
 
 / {
@@ -40,45 +28,16 @@
             key-positions = <0 1>;
         };
 
-        play {
-            bindings = <&play>;
-            key-positions = <35 34>;
-        };
+        play { bindings = <&play>; key-positions = <35 34>; };
+        next { bindings = <&next>; key-positions = <35 36>; };
+        print { bindings = <&print>; key-positions = <31 32>; };
 
-        next {
-            bindings = <&next>;
-            key-positions = <35 36>;
-        };
+        telaesquerda { bindings = <&telaesquerda>; key-positions = <5 6 7>; };
+        telameio      { bindings = <&telameio>;      key-positions = <6 7 8>; };
+        teladireita   { bindings = <&teladireita>;   key-positions = <9 8 7>; };
 
-        print {
-            bindings = <&print>;
-            key-positions = <31 32>;
-        };
-
-        telaesquerda {
-            bindings = <&telaesquerda>;
-            key-positions = <5 6 7>;
-        };
-
-        telameio {
-            bindings = <&telameio>;
-            key-positions = <6 7 8>;
-        };
-
-        teladireita {
-            bindings = <&teladireita>;
-            key-positions = <9 8 7>;
-        };
-
-        reposicionar {
-            bindings = <&redefinirtela>;
-            key-positions = <28 29 30>;
-        };
-
-        telatoda {
-            bindings = <&telatoda>;
-            key-positions = <29 30 31>;
-        };
+        reposicionar { bindings = <&redefinirtela>; key-positions = <28 29 30>; };
+        telatoda     { bindings = <&telatoda>;       key-positions = <29 30 31>; };
     };
 
     macros {
@@ -86,215 +45,70 @@
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_LAYER_0";
         };
 
-        print: print {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LS(LG(NUMBER_4))>;
+        print { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LS(LG(NUMBER_4))>; };
+        play  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LA(UP_ARROW))>; };
+        next  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LA(RIGHT))>; };
 
-            label = "PRINT";
-        };
-
-        play: play {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LG(LA(UP_ARROW))>;
-
-            label = "PLAY";
-        };
-
-        next: next {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LG(LA(RIGHT))>;
-
-            label = "NEXT";
-        };
-
-        telaesquerda: telaesquerda {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LC(LA(LEFT_ARROW))>;
-
-            label = "TELAESQUERDA";
-        };
-
-        telameio: telameio {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LC(LA(C))>;
-
-            label = "TELAMEIO";
-        };
-
-        teladireita: teladireita {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LC(LA(RIGHT_ARROW))>;
-
-            label = "TELADIREITA";
-        };
-
-        redefinirtela: redefinirtela {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LG(LC(LA(SPACE)))>;
-
-            label = "REDEFINIRTELA";
-        };
-
-        telatoda: telatoda {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&kp LC(LA(F))>;
-
-            label = "TELATODA";
-        };
+        telaesquerda { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(LEFT_ARROW))>; };
+        telameio     { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(C))>; };
+        teladireita  { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(RIGHT_ARROW))>; };
+        redefinirtela{ compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LG(LC(LA(SPACE)))>; };
+        telatoda     { compatible = "zmk,behavior-macro"; bindings = <&macro_tap &kp LC(LA(F))>; };
     };
 
     behaviors {
 
-    /* Wrapper para clique do mouse (MB1) */
-    mouse_mb1: mouse_mb1 {
-        compatible = "zmk,behavior-macro";
-        label = "MOUSE_MB1";
-        #binding-cells = <0>;
+        /* Wrapper MB1 */
+        mouse_mb1: mouse_mb1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &mkp MB1>;
+        };
 
-        bindings = <&macro_tap>, <&mkp MB1>;
-    };
+        /* Tap = MB1 | Hold = Left Command */
+        cmd_hold_mouse_tap: cmd_hold_mouse_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "balanced";
+            tapping-term-ms = <50>;
+            bindings = <&kp LEFT_COMMAND &mouse_mb1>;
+        };
 
-    /* Tap = MB1 | Hold = Left Command */
-    cmd_hold_mouse_tap: cmd_hold_mouse_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "CMD_HOLD_MOUSE_TAP";
-        #binding-cells = <0>;
-
-        flavor = "balanced";
-        tapping-term-ms = <50>;
-
-        /* ORDEM: <HOLD>, <TAP> */
-        bindings = <&kp LEFT_COMMAND>, <&mouse_mb1>;
-    };jj
-
+        /* Tap = MB3 | Hold = MO 5 */
         mo_scroll: mo_scroll {
             compatible = "zmk,behavior-hold-tap";
-            label = "MO_SCROLL";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <160>;
-            bindings = <&mo>, <&mkp>;
+            bindings = <&mo &mkp>;
         };
 
-        /* Tap-dance:
- * 1 tap  -> MB3
- * 2 taps -> Sticky layer 5 (SCROLL)
- */
-
+        /* Tap dance: 1x MB3 | 2x Sticky layer 5 */
         td_scroll: td_scroll {
-    compatible = "zmk,behavior-tap-dance";
-    label = "TD_SCROLL";
-    #binding-cells = <0>;
-    tapping-term-ms = <220>;
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <220>;
+            bindings = <&mkp MB3>, <&sl 5>;
+        };
 
-    /* 1 tap  -> mo_scroll (tap = MB3, hold = MO 5)
-     * 2 taps -> sticky layer 5
-     */
-    bindings = <&mo_scroll 5 MB3 &sl 5>;
-};
-
-
-        tap_key_hold_layer: tap_key_hold_layer {
+        tap_key_hold_layer {
             compatible = "zmk,behavior-hold-tap";
-            label = "TAP_KEY_HOLD_LAYER";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <50>;
-
-            /* tap = key
-     * hold = momentary layer
-     */
-
-            bindings = <&mo>, <&kp>;
+            bindings = <&mo &kp>;
         };
 
-        mo_kp: mo_kp {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MO_KP";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <180>;
-            bindings = <&mo>, <&kp>;
-        };
-
-        mo_mouse_click: mo_mouse_click {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MO_MOUSE_CLICK";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&mo>, <&mkp>;
-        };
-
-        lt_to_layer_0: lt_to_layer_0 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-
-        // Encoder -> scroll de mouse (usa &msc)
-
-        rot_scroll: rot_scroll {
+        rot_scroll {
             compatible = "zmk,behavior-sensor-rotate-var";
-            label = "ROT_SCROLL";
             #sensor-binding-cells = <2>;
-
-            // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
-
-            bindings = <&msc>, <&msc>;
+            bindings = <&msc &msc>;
         };
 
-        // Tap dance na tecla A:
-        // 1 toque  -> A
-        // 2 toques -> @
-
-        td_a: td_a {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_A";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;      // pode ajustar depois se quiser mais rápido/lento
-            bindings = <&kp A>, <&kp AT>;
-        };
-
-        // Tap dance na tecla Q:
-        // 1 toque  -> Q
-        // 2 toques -> !
-
-        td_q: td_q {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_Q";
-            #binding-cells = <0>;
-            tapping-term-ms = <400>;
-            bindings = <&kp Q>, <&kp EXCLAMATION>;
-        };
-
-        til_dash: til_dash {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TIL_DASH";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-
-            /* hold  = &mo <layer>
-             * tap   = &kp <keycode>
-             */
-
-            bindings = <&mo>, <&kp>;
-        };
+        td_a { compatible = "zmk,behavior-tap-dance"; bindings = <&kp A &kp AT>; };
+        td_q { compatible = "zmk,behavior-tap-dance"; bindings = <&kp Q &kp EXCLAMATION>; };
     };
 
     keymap {
@@ -302,73 +116,22 @@
 
         default_layer {
             bindings = <
-&kp Q       &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
-&kp A       &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
-&kp Z       &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
-&kp ESCAPE  &kp TAB             &td_scroll      &mkp MB2            &cmd_hold_mouse_tap  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &mkp MB4
-            >;
-
-            sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
-        };
-
-        Num {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                             &trans           &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY
-&trans  &trans  &trans  &trans  &trans  &trans      &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
-&trans  &trans  &trans  &trans  &trans  &trans      &kp COMMA      &kp DOT          &kp N1  &kp N2  &kp N3  &kp PLUS
-&trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOL_UP>;
-        };
-
-        Signs {
-            bindings = <
-&kp EXCLAMATION  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT                                                   &kp CARET  &kp AMPERSAND  &kp ASTERISK  &trans  &trans
-&kp AT           &trans  &trans    &trans      &trans       &kp LEFT_BRACKET          &kp RIGHT_BRACKET      &trans     &trans         &trans        &trans  &trans
-&trans           &trans  &trans    &trans      &trans       &kp LEFT_PARENTHESIS      &kp RIGHT_PARENTHESIS  &trans     &trans         &trans        &trans  &trans
-&trans           &trans  &trans    &trans      &trans       &trans                    &trans                 &trans                                          &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp BACKSPACE DEL>;
-        };
-
-        layer_6 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp Q &kp W &kp E &kp R &kp T      &kp Y &kp U &kp I &kp O &kp P
+&kp A &mt LCTRL S &mt LALT D &mt LGUI F &kp G &kp K_MUTE &kp RETURN &kp H &kp J &kp K &kp L &kp SQT
+&kp Z &kp X &kp C &kp V &kp B &mt TILDE MINUS &lt 6 SEMI &kp N &kp M &kp COMMA &kp DOT &kp SLASH
+&kp ESCAPE &kp TAB &td_scroll &mkp MB2 &cmd_hold_mouse_tap &lt 1 SPACE &lt 2 BACKSPACE &sk LEFT_SHIFT &mkp MB4
             >;
         };
 
         MOUSE {
             bindings = <
-&kp Q    &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
-&kp A    &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RET          &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
-&kp Z    &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp FSLH
-&kp ESC  &kp TAB             &td_scroll      &mkp MB2            &cmd_hold_mouse_tap  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                                           &mkp MB4
+&kp Q &kp W &kp E &kp R &kp T      &kp Y &kp U &kp I &kp O &kp P
+&kp A &mt LCTRL S &mt LALT D &mt LGUI F &kp G &kp K_MUTE &kp RET &kp H &kp J &kp K &kp L &kp SQT
+&kp Z &kp X &kp C &kp V &kp B &mt TILDE MINUS &lt 6 SEMI &kp N &kp M &kp COMMA &kp DOT &kp FSLH
+&kp ESC &kp TAB &td_scroll &mkp MB2 &cmd_hold_mouse_tap &lt 1 SPACE &lt 2 BACKSPACE &kp LEFT_SHIFT &mkp MB4
             >;
 
             sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
-        };
-
-        SCROLL {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        BT {
-            bindings = <
-&bootloader  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR_ALL
-            >;
         };
     };
 };
