@@ -164,16 +164,8 @@ mkp_tap_kp_hold: mkp_tap_kp_hold {
     flavor = "balanced";
     tapping-term-ms = <200>;
 
-    /* tap  = mouse key press
-     * hold = key press
-     */
     bindings = <&mkp>, <&kp>;
 };
-jj
-
-        /* Tap = MB3
- * Hold = Momentary layer 5 (SCROLL)
- */
 
         mo_scroll: mo_scroll {
             compatible = "zmk,behavior-hold-tap";
