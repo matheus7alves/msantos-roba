@@ -156,30 +156,27 @@ j#include <dt-bindings/zmk/mouse.h>
 
     behaviors {
 
-    mkp_hold_kp_tap: mkp_hold_kp_tap {
+    /* Wrapper para clique do mouse (MB1) */
+    mouse_mb1: mouse_mb1 {
+        compatible = "zmk,behavior-macro";
+        label = "MOUSE_MB1";
+        #binding-cells = <0>;
+
+        bindings = <&macro_tap>, <&mkp MB1>;
+    };
+
+    /* Tap = MB1 | Hold = Left Command */
+    cmd_hold_mouse_tap: cmd_hold_mouse_tap {
         compatible = "zmk,behavior-hold-tap";
-        label = "MKP_HOLD_KP_TAP";
-        #binding-cells = <2>;
+        label = "CMD_HOLD_MOUSE_TAP";
+        #binding-cells = <0>;
 
         flavor = "balanced";
         tapping-term-ms = <200>;
 
-        /* ORDEM CORRETA:
-         * bindings = <HOLD>, <TAP>
-         */
-        bindings = <&kp>, <&mkp>;
-    };
-
-mkp_tap_kp_hold: mkp_tap_kp_hold {
-    compatible = "zmk,behavior-hold-tap";
-    label = "MKP_TAP_KP_HOLD";
-    #binding-cells = <2>;
-
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-
-    bindings = <&mkp>, <&kp>;
-};
+        /* ORDEM: <HOLD>, <TAP> */
+        bindings = <&kp LEFT_COMMAND>, <&mouse_mb1>;
+    };jj
 
         mo_scroll: mo_scroll {
             compatible = "zmk,behavior-hold-tap";
@@ -308,7 +305,7 @@ mkp_tap_kp_hold: mkp_tap_kp_hold {
 &kp Q       &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
 &kp A       &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
 &kp Z       &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
-&kp ESCAPE  &kp TAB             &td_scroll      &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &mkp MB4
+&kp ESCAPE  &kp TAB             &td_scroll      &mkp MB2            &cmd_hold_mouse_tap  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &mkp MB4
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
@@ -350,7 +347,7 @@ mkp_tap_kp_hold: mkp_tap_kp_hold {
 &kp Q    &kp W               &kp E           &kp R               &kp T                                           &kp Y           &kp U  &kp I                    &kp O    &kp P
 &kp A    &mt LEFT_CONTROL S  &mt LEFT_ALT D  &mt LEFT_COMMAND F  &kp G     &kp K_MUTE           &kp RET          &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
 &kp Z    &kp X               &kp C           &kp V               &kp B     &mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp FSLH
-&kp ESC  &kp TAB             &td_scroll      &mkp MB2            &mkp MB1  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                                           &mkp MB4
+&kp ESC  &kp TAB             &td_scroll      &mkp MB2            &cmd_hold_mouse_tap  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                                           &mkp MB4
             >;
 
             sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
