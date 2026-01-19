@@ -165,7 +165,6 @@
         bindings = <&macro_tap>, <&mkp MB1>;
     };
 
-    /* Tap = MB1 | Hold = Left Command */
     cmd_hold_mouse_tap: cmd_hold_mouse_tap {
         compatible = "zmk,behavior-hold-tap";
         label = "CMD_HOLD_MOUSE_TAP";
@@ -174,8 +173,7 @@
         flavor = "balanced";
         tapping-term-ms = <50>;
 
-        /* ORDEM: <HOLD>, <TAP> */
-        bindings = <&kp LEFT_COMMAND &mouse_mb1>;
+        bindings = <&kp>, <&mouse_mb1>;
 
     };
 
