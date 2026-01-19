@@ -213,7 +213,7 @@ mkp_tap_kp_hold: mkp_tap_kp_hold {
             label = "TAP_KEY_HOLD_LAYER";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <180>;
+            tapping-term-ms = <50>;
 
             /* tap = key
      * hold = momentary layer
