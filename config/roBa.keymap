@@ -186,9 +186,10 @@
 sl_scroll: sl_scroll {
     compatible = "zmk,behavior-sticky-layer";
     label = "SL_SCROLL";
-    #binding-cells = <1>;
+    #binding-cells = <0>;
 
-    release-after-ms = <60000>; /* 60 segundos */
+    layers = <5>;
+    release-after-ms = <60000>;
 };
 
 
@@ -206,7 +207,7 @@ sl_scroll: sl_scroll {
 
     bindings =
         <&mo_scroll 5 MB3>,  /* 1 tap */
-        <&sl_scroll 5>;      /* double tap */
+        <&sl_scrollk>;      /* double tap */
 };
 
         tap_key_hold_layer: tap_key_hold_layer {
