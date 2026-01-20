@@ -47,6 +47,8 @@
 
 &xiao_serial { status = "disabled"; };
 
+/* ... resto do arquivo acima ... */
+
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -64,9 +66,7 @@
     };
 };
 
-/* CORREÇÃO AQUI: delete-node deve ficar fora das chaves */
-/delete-node/ &i2c0_default;
-/delete-node/ &i2c0_sleep;
+/* REMOVIDO OS COMANDOS /delete-node/ QUE ESTAVAM AQUI */
 
 &i2c0 {
     status = "disabled";
