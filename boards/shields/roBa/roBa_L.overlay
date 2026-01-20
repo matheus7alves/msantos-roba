@@ -16,8 +16,15 @@
     steps = <27>;
 };
 
-/* CORREÇÃO: Desativa e remove as referências de pinos */
+/* Desativa o I2C (que já corrigimos) */
 &i2c0 {
+    status = "disabled";
+    pinctrl-0 = <>;
+    pinctrl-1 = <>;
+};
+
+/* CORREÇÃO NOVA: Desativa o SPI2 para liberar os pinos 8, 9 e 10 para as teclas */
+&spi2 {
     status = "disabled";
     pinctrl-0 = <>;
     pinctrl-1 = <>;
