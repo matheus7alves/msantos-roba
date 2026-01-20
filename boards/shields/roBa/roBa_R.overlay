@@ -65,14 +65,12 @@
     };
 };
 
+/ {
+    /delete-node/ &i2c0_default;
+    /delete-node/ &i2c0_sleep;
+};
+
 &i2c0 {
     status = "disabled";
 };
 
-&i2c0_default {
-    status = "disabled";
-};
-
-&i2c0_sleep {
-    status = "disabled";
-};
