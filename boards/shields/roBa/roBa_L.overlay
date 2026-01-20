@@ -11,15 +11,14 @@
         ;
 };
 
-/* ... resto do arquivo acima ... */
-
 &left_encoder {
     status = "okay";
-    steps = <24>;
+    steps = <27>;
 };
 
-/* REMOVIDO OS COMANDOS /delete-node/ QUE ESTAVAM AQUI */
-
+/* CORREÇÃO: Desativa e remove as referências de pinos */
 &i2c0 {
     status = "disabled";
+    pinctrl-0 = <>;
+    pinctrl-1 = <>;
 };
