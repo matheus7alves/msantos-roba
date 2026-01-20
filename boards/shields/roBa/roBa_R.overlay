@@ -47,8 +47,6 @@
 
 &xiao_serial { status = "disabled"; };
 
-/* ... resto do arquivo acima ... */
-
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -66,8 +64,9 @@
     };
 };
 
-/* REMOVIDO OS COMANDOS /delete-node/ QUE ESTAVAM AQUI */
-
+/* CORREÇÃO: Desativa e remove as referências de pinos */
 &i2c0 {
     status = "disabled";
+    pinctrl-0 = <>;
+    pinctrl-1 = <>;
 };
