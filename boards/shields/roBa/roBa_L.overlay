@@ -11,14 +11,14 @@
         ;
 };
 
+/* ... resto do arquivo acima ... */
+
 &left_encoder {
     status = "okay";
-    steps = <27>;
+    steps = <24>;
 };
 
-/* CORREÇÃO: delete-node fora das chaves */
-/delete-node/ &i2c0_default;
-/delete-node/ &i2c0_sleep;
+/* REMOVIDO OS COMANDOS /delete-node/ QUE ESTAVAM AQUI */
 
 &i2c0 {
     status = "disabled";
