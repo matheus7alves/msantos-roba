@@ -79,6 +79,11 @@
             bindings = <&telatoda>;
             key-positions = <29 30 31>;
         };
+
+        missioncontrol {
+            bindings = <&kp F3>;
+            key-positions = <1 2 3>;
+        };
     };
 
     macros {
