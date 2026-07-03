@@ -81,8 +81,8 @@
         };
 
         missioncontrol {
-            bindings = <&kp F3>;
-            key-positions = <1 2 3>;
+            bindings = <&kp LC(UP_ARROW)>;
+            key-positions = <1 3>;
         };
     };
 
