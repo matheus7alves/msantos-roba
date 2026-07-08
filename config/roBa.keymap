@@ -33,56 +33,67 @@
         double_quotation {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
+            require-prior-idle-ms = <150>;
         };
 
         til {
             bindings = <&kp TILDE>;
             key-positions = <0 1>;
+            require-prior-idle-ms = <150>;
         };
 
         play {
             bindings = <&play>;
             key-positions = <35 34>;
+            require-prior-idle-ms = <150>;
         };
 
         next {
             bindings = <&next>;
             key-positions = <35 36>;
+            require-prior-idle-ms = <150>;
         };
 
         print {
             bindings = <&print>;
             key-positions = <31 32>;
+            require-prior-idle-ms = <150>;
         };
 
         telaesquerda {
             bindings = <&telaesquerda>;
             key-positions = <5 6 7>;
+            require-prior-idle-ms = <150>;
         };
 
         telameio {
             bindings = <&telameio>;
             key-positions = <6 7 8>;
+            require-prior-idle-ms = <150>;
         };
 
         teladireita {
             bindings = <&teladireita>;
             key-positions = <9 8 7>;
+            require-prior-idle-ms = <150>;
         };
 
         reposicionar {
             bindings = <&redefinirtela>;
             key-positions = <28 29 30>;
+            require-prior-idle-ms = <150>;
         };
 
         telatoda {
             bindings = <&telatoda>;
             key-positions = <29 30 31>;
+            require-prior-idle-ms = <150>;
         };
 
         missioncontrol {
             bindings = <&kp LC(UP_ARROW)>;
             key-positions = <1 3>;
+            require-prior-idle-ms = <150>;
         };
     };
 
