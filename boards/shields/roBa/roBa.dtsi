@@ -109,7 +109,9 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <10>;
+        /* encoder físico: 15 detents/volta, steps=30 (2 pulsos por detent)
+         * 15 triggers/volta => 1 detent = exatamente 1 evento */
+        triggers-per-rotation = <15>;
     };
 
     trackball_listener: trackball_listener {
