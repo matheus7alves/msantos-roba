@@ -16,20 +16,20 @@
             ;
 };
 
-/* Curva estilo macOS calibrada pro CPI 700:
- * <600 counts/s (movimento fino) atenua até ~0.8x pra precisão
- * (0.6x deixava micro-movimentos "surdos" — fração acumulando);
- * 600 = 1:1; 600→4000 acelera quadrático até 3x (flick).
+/* Curva pro CPI 700, prioridade: nunca engolir micro-movimento.
+ * min 1000 = zero atenuação (todo count vira movimento);
+ * até 600 counts/s: 1:1; 600→4500: rampa LINEAR até 3x (exponent 1
+ * é a subida mais suave do módulo — a quadrática dava "coice").
  * Visualizador: https://pointing.streamlit.app/ */
 
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
     track-remainders;
-    min-factor = <800>;
+    min-factor = <1000>;
     max-factor = <3000>;
     speed-threshold = <600>;
-    speed-max = <4000>;
-    acceleration-exponent = <2>;
+    speed-max = <4500>;
+    acceleration-exponent = <1>;
 };
 
 / {
