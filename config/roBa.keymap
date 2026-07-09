@@ -277,7 +277,9 @@
             #sensor-binding-cells = <2>;
 
             // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
+            // tap-ms default (5ms) solta o &msc antes do evento de scroll sair — 30ms garante o report
 
+            tap-ms = <30>;
             bindings = <&msc>, <&msc>;
         };
 
