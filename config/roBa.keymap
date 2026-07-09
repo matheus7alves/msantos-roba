@@ -331,7 +331,7 @@
 &mt LEFT_CONTROL ESCAPE  &kp TAB  &td_scroll      &mkp MB2  &cmd_hold_mouse_tap LEFT_COMMAND 0  &lt 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &mkp MB4
             >;
 
-            sensor-bindings = <&msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
         };
 
         Num {
@@ -373,7 +373,7 @@
 &mt LEFT_CONTROL ESCAPE  &kp TAB  &td_scroll      &mkp MB2  &cmd_hold_mouse_tap LEFT_COMMAND 0  &lt 1 SPACE          &lt 2 BACKSPACE  &kp LEFT_SHIFT                                               &mkp MB4
             >;
 
-            sensor-bindings = <&msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
         };
 
         SCROLL {
@@ -384,7 +384,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&rot_scroll SCRL_DOWN SCRL_UP>;
         };
 
         BT {
