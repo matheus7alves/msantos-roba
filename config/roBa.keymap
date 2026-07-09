@@ -8,7 +8,9 @@
 /* &msc é taxa POR SEGUNDO: total por detent = SCRL_VAL x tap-ms/1000.
  * 2400 x 60ms = ~144 unidades hi-res (~1,2 tick de rodinha), espalhadas
  * em micro-reports = scroll smooth estilo trackpad, sem lag. */
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 1200
+/* 600 x 60ms = ~36 unidades hi-res por detent (~1 linha) — escala de
+ * rodinha de mouse padrão no Mac (1-3 linhas/casa). 2400 e 1200 = sensível demais. */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 600
 
 #include <dt-bindings/zmk/pointing.h>
 
