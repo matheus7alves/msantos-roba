@@ -16,17 +16,18 @@
             ;
 };
 
-/* Curva aproximando a aceleração default do macOS:
- * levemente sub-1x bem devagar (precisão), ~1x em velocidade normal,
- * até 3x em flicks. Visualizador: https://pointing.streamlit.app/ */
+/* Curva estilo macOS calibrada pro CPI 700:
+ * <600 counts/s (movimento fino) atenua até 0.6x pra precisão;
+ * 600 = 1:1; 600→4000 acelera quadrático até 3x (flick).
+ * Visualizador: https://pointing.streamlit.app/ */
 
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
     track-remainders;
-    min-factor = <800>;
+    min-factor = <600>;
     max-factor = <3000>;
-    speed-threshold = <1200>;
-    speed-max = <6000>;
+    speed-threshold = <600>;
+    speed-max = <4000>;
     acceleration-exponent = <2>;
 };
 
