@@ -4,8 +4,6 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
-    - name: oleksandrmaslov
-      url-base: https://github.com/oleksandrmaslov
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -16,9 +14,5 @@ manifest:
       # pinado no SHA do main em 2026-07-08 (último commit: 2025-02-26, ball-action)
       # — evita quebra da build v0.3 se o upstream migrar o main pra ZMK v0.4/Zephyr 4.1
       revision: 5e04553ab803d24405bd45621a41310ea3050e59
-    - name: zmk-pointing-acceleration
-      remote: oleksandrmaslov
-      # pinado no SHA do main em 2026-07-09
-      revision: 0da8f97f8f2abb18fcc9d488b25357511922cf32
   self:
     path: config

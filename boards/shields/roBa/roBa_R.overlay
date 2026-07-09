@@ -1,6 +1,4 @@
 #include "roBa.dtsi"
-#include <input/processors.dtsi>
-#include <behaviors/input_gestures_accel.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -16,28 +14,11 @@
             ;
 };
 
-/* Curva pro CPI 700, prioridade: nunca engolir micro-movimento.
- * min 1000 = zero atenuação (todo count vira movimento);
- * até 600 counts/s: 1:1; 600→4500: rampa LINEAR até 3x (exponent 1
- * é a subida mais suave do módulo — a quadrática dava "coice").
- * Visualizador: https://pointing.streamlit.app/ */
-
-&pointer_accel {
-    input-type = <INPUT_EV_REL>;
-    track-remainders;
-    min-factor = <1000>;
-    max-factor = <3000>;
-    speed-threshold = <600>;
-    speed-max = <4500>;
-    acceleration-exponent = <1>;
-};
-
 / {
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&pointer_accel>;
     };
 };
 
