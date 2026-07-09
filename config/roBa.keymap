@@ -5,7 +5,10 @@
 
 /* tamanho do passo de scroll do encoder (com smooth scrolling ligado);
  * valor da comunidade roBa — ajustar se scrollar demais/de menos */
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 160
+/* &msc é taxa POR SEGUNDO: total por detent = SCRL_VAL x tap-ms/1000.
+ * 2400 x 60ms = ~144 unidades hi-res (~1,2 tick de rodinha), espalhadas
+ * em micro-reports = scroll smooth estilo trackpad, sem lag. */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 2400
 
 #include <dt-bindings/zmk/pointing.h>
 
@@ -279,7 +282,7 @@
             // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
             // tap-ms default (5ms) solta o &msc antes do evento de scroll sair — 30ms garante o report
 
-            tap-ms = <30>;
+            tap-ms = <60>;
             bindings = <&msc>, <&msc>;
         };
 
