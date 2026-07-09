@@ -13,5 +13,9 @@
 
 &left_encoder {
     status = "okay";
-    steps = <30>;
+
+    /* 15 detents/volta × 4 pulsos por detent = 60 (confirmado na prática:
+     * com steps=30 cada detent dava 2 eventos). Com triggers-per-rotation=15
+     * no dtsi, 1 detent físico = exatamente 1 evento. */
+    steps = <60>;
 };
