@@ -25,7 +25,13 @@
 &lt {
     flavor = "balanced";
     quick-tap-ms = <175>;
+    require-prior-idle-ms = <150>;
 };
+
+/* Sticky keys (Cmd, Shift): solta o mod no PRESS da tecla seguinte, não no
+ * release — digitando rápido, "Ex" não vira mais "EX". */
+
+&sk { quick-release; };
 
 &trackball {
     automouse-layer = <4>;
