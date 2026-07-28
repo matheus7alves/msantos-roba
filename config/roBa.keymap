@@ -54,7 +54,7 @@
 / {
     /* Combo é global por default e o ZMK filtra pela layer ativa MAIS ALTA.
      * Várias posições de combo caem em cima de teclas reais da Num: print
-     * (31 32) fica em N2+N3 — digitar "23" rápido tirava screenshot;
+     * (31 32) fica em N2+N3: digitar "23" rápido tirava screenshot;
      * double_quotation (20 21) fica em N6+MINUS; as de janela (5-9, 28-31)
      * pegam N7/N8/N9 e N1/N2.
      *
@@ -420,7 +420,7 @@
          * alta ganha, um esbarrão no trackball armava a MOUSE e ela sobrescrevia
          * a Num (layer 1) que estava embaixo: segurando Space pra digitar
          * número, saía a LETRA (7/8/9 viram U/I/O). Com &trans, a MOUSE não
-         * tapa mais nada — cai pra camada de baixo, seja base ou Num. */
+         * tapa mais nada, cai pra camada de baixo, seja base ou Num. */
 
         MOUSE {
             bindings = <
