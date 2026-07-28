@@ -382,11 +382,17 @@
         };
 
         /* ÍNDICE 1. Trocou de lugar com a Num de propósito: ver comentário na
-         * Num, lá embaixo. Alcançada por &lt 1 SEMI. */
+         * Num, lá embaixo. Alcançada por &lt 1 SEMI.
+         *
+         * &bootloader saiu da posição 0 (tecla Q) em 28/07. Segurar ";" e tocar
+         * Q punha a metade DIREITA, que é a central do split, em modo DFU: o
+         * teclado inteiro morria e só voltava tirando e pondo a bateria, que é
+         * exatamente o sintoma que a gente vinha tratando como queda de sinal.
+         * Pra entrar em DFU agora: duplo toque no botão de reset do XIAO. */
 
         BT {
             bindings = <
-&bootloader  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans       &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
 &trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &bt BT_CLR
 &trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR_ALL
