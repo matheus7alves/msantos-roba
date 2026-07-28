@@ -52,6 +52,11 @@
 };
 
 / {
+    /* layers = <0 4> em todos: combo é global por default e as posições colidem
+     * com a camada Num. Ex.: print (COMMA+DOT) cai em cima de N2+N3 — digitar
+     * "23" rápido tirava screenshot; double_quotation (posições 20 21) cai em
+     * N6+MINUS. Base + automouse cobre o uso real. */
+
     combos {
         compatible = "zmk,combos";
 
@@ -59,66 +64,77 @@
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         til {
             bindings = <&kp TILDE>;
             key-positions = <0 1>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         play {
             bindings = <&play>;
             key-positions = <35 34>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         next {
             bindings = <&next>;
             key-positions = <35 36>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         print {
             bindings = <&print>;
             key-positions = <31 32>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         telaesquerda {
             bindings = <&telaesquerda>;
             key-positions = <5 6 7>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         telameio {
             bindings = <&telameio>;
             key-positions = <6 7 8>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         teladireita {
             bindings = <&teladireita>;
             key-positions = <9 8 7>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         reposicionar {
             bindings = <&redefinirtela>;
             key-positions = <28 29 30>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         telatoda {
             bindings = <&telatoda>;
             key-positions = <29 30 31>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
 
         missioncontrol {
             bindings = <&kp LC(UP_ARROW)>;
             key-positions = <1 2 3>;
             require-prior-idle-ms = <150>;
+            layers = <0 4>;
         };
     };
 
@@ -390,12 +406,21 @@
             >;
         };
 
+        /* Automouse (layer 4). Só J = clique e L = clique direito; TODO o resto
+         * é &trans de propósito.
+         *
+         * Antes esta camada REPETIA o alfabeto inteiro. Como layer ativa mais
+         * alta ganha, um esbarrão no trackball armava a MOUSE e ela sobrescrevia
+         * a Num (layer 1) que estava embaixo: segurando Space pra digitar
+         * número, saía a LETRA (7/8/9 viram U/I/O). Com &trans, a MOUSE não
+         * tapa mais nada — cai pra camada de baixo, seja base ou Num. */
+
         MOUSE {
             bindings = <
-&kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U     &kp I                    &kp O     &kp P
-&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp K_MUTE           &kp RET          &kp H           &mkp MB1  &tap_key_hold_layer 5 K  &mkp MB2  &kp SQT
-&kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M     &kp COMMA                &kp DOT   &kp FSLH
-&mt LEFT_CONTROL ESCAPE  &kp TAB  &td_scroll      &mkp MB2  &sk LEFT_COMMAND                    &lt_num 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                               &kp LG(LEFT_BRACKET)
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
 
             sensor-bindings = <&rot_scroll SCRL_UP SCRL_DOWN>;
