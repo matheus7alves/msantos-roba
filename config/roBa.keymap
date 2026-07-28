@@ -52,17 +52,16 @@
 };
 
 / {
-    /* Combo é global por default e o ZMK filtra pela layer ativa MAIS ALTA.
-     * Várias posições de combo caem em cima de teclas reais da Num: print
-     * (31 32) fica em N2+N3: digitar "23" rápido tirava screenshot;
-     * double_quotation (20 21) fica em N6+MINUS; as de janela (5-9, 28-31)
-     * pegam N7/N8/N9 e N1/N2.
+    /* layers = <0 4> em todos. Combo é global por default e várias posições
+     * caem em cima de teclas reais da Num: print (31 32) fica em N2+N3, então
+     * digitar "23" rápido tirava screenshot; double_quotation (20 21) fica em
+     * N6+MINUS; as de janela pegam N7/N8/N9 e N1/N2.
      *
-     * layers = <0>   -> combos que colidem com a Num. Só na base. Não basta
-     *                   listar <0 4>: com Space (Num) segurado + esbarrão no
-     *                   trackball, a mais alta vira 4 e o combo voltaria.
-     * layers = <0 4> -> combos cujas posições são &trans na Num (sem colisão);
-     *                   seguem valendo durante a janela do automouse. */
+     * O ZMK filtra combo pela layer ativa MAIS ALTA. Com a Num na 6 (acima da
+     * automouse), segurar Space põe a mais alta em 6 e nenhum combo desta
+     * lista dispara, mesmo com o trackball esbarrado. Listar a 4 mantém os
+     * combos vivos durante a janela do automouse, que é quando você usa
+     * screenshot e gerenciamento de janela. */
 
     combos {
         compatible = "zmk,combos";
@@ -71,7 +70,7 @@
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         til {
@@ -99,42 +98,42 @@
             bindings = <&print>;
             key-positions = <31 32>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         telaesquerda {
             bindings = <&telaesquerda>;
             key-positions = <5 6 7>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         telameio {
             bindings = <&telameio>;
             key-positions = <6 7 8>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         teladireita {
             bindings = <&teladireita>;
             key-positions = <9 8 7>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         reposicionar {
             bindings = <&redefinirtela>;
             key-positions = <28 29 30>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         telatoda {
             bindings = <&telatoda>;
             key-positions = <29 30 31>;
             require-prior-idle-ms = <150>;
-            layers = <0>;
+            layers = <0 4>;
         };
 
         missioncontrol {
@@ -375,22 +374,23 @@
             bindings = <
 &kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U  &kp I                    &kp O    &kp P
 &kp A                    &kp S    &kp D           &kp F     &kp G                               &kp K_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
-&kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 6 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
-&mt LEFT_CONTROL ESCAPE  &kp TAB  &td_scroll      &mkp MB2  &sk LEFT_COMMAND                    &lt_num 1 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
+&kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 1 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
+&mt LEFT_CONTROL ESCAPE  &kp TAB  &td_scroll      &mkp MB2  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
         };
 
-        Num {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                             &trans           &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY
-&trans  &trans  &trans  &trans  &trans  &trans      &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
-&trans  &trans  &trans  &trans  &trans  &trans      &kp COMMA      &kp DOT          &kp N1  &kp N2  &kp N3  &kp PLUS
-&trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
-            >;
+        /* ÍNDICE 1. Trocou de lugar com a Num de propósito: ver comentário na
+         * Num, lá embaixo. Alcançada por &lt 1 SEMI. */
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        BT {
+            bindings = <
+&bootloader  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
+&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR_ALL
+            >;
         };
 
         Signs {
@@ -444,13 +444,27 @@
             sensor-bindings = <&rot_scroll SCRL_UP SCRL_DOWN>;
         };
 
-        BT {
+        /* ÍNDICE 6, a mais alta. Declarada por último de propósito.
+         *
+         * Camada ativa mais alta ganha. Enquanto a Num era 1 e a automouse 4,
+         * um esbarrão no trackball com Space segurado punha a MOUSE por cima:
+         * primeiro isso trocava número por letra (resolvido pondo &trans na
+         * MOUSE), e sobrava o MB1 no J e o MB2 no L caindo em cima do N4 e do
+         * N6, ou seja, digitar "4" clicava de verdade na tela e "6" abria menu
+         * de contexto. Com a Num acima de tudo, nada mais a sobrescreve.
+         *
+         * Trocou de posição com a BT, que foi pra 1. Custo: só os dois índices
+         * em &lt_num 6 SPACE e &lt 1 SEMI. */
+
+        Num {
             bindings = <
-&bootloader  &trans  &trans  &trans  &trans                      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &trans
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                  &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans                             &trans           &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY
+&trans  &trans  &trans  &trans  &trans  &trans      &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
+&trans  &trans  &trans  &trans  &trans  &trans      &kp COMMA      &kp DOT          &kp N1  &kp N2  &kp N3  &kp PLUS
+&trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
