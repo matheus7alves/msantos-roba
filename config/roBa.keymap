@@ -8,10 +8,11 @@
 /* &msc é taxa POR SEGUNDO: total por detent = SCRL_VAL x tap-ms/1000.
  * 2400 x 60ms = ~144 unidades hi-res (~1,2 tick de rodinha), espalhadas
  * em micro-reports = scroll smooth estilo trackpad, sem lag. */
-/* 1800 x 20ms = ~36 unidades hi-res por detent (~1 linha, escala de rodinha
- * de mouse no Mac). tap de 20ms (era 60) evita colisão entre detents em giro
- * rápido — com 60ms, casas a <60ms de distância se perdiam (~1 em 12). */
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 1800
+/* Velocidade por detent = SCRL_VAL x tap-ms/1000 (dial de velocidade: SCRL_VAL).
+ * 3600 x 10ms = ~36 unidades hi-res por detent (~1 linha) — mesma velocidade
+ * do antigo 1800x20ms, mas tap de 10ms corta pela metade a janela em que
+ * detents consecutivos colidem e se perdem em giro rápido. */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 3600
 
 #include <dt-bindings/zmk/pointing.h>
 
@@ -227,7 +228,8 @@
             label = "TAP_KEY_HOLD_LAYER";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <150>;
+            tapping-term-ms = <120>;
+            require-prior-idle-ms = <150>;
 
             /* tap = key
      * hold = momentary layer
@@ -271,9 +273,9 @@
             #sensor-binding-cells = <2>;
 
             // CW e CCW vão chamar &msc com parâmetros diferentes (SCRL_DOWN / SCRL_UP)
-            // tap-ms default (5ms) solta o &msc antes do evento de scroll sair — 30ms garante o report
+            // 10ms: mínimo que ainda garante o report sair; 20 perdia detents <20ms
 
-            tap-ms = <20>;
+            tap-ms = <10>;
             bindings = <&msc>, <&msc>;
         };
 
