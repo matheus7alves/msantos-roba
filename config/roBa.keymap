@@ -142,6 +142,33 @@
             require-prior-idle-ms = <150>;
             layers = <0 4>;
         };
+
+        /* Combos livres pra mapear no Moom (26/10/2026). F16-F18 nao existem
+         * no teclado do Mac, entao nenhum app ou atalho do sistema usa.
+         * F14/F15 ficaram de fora: o macOS ainda trata como brilho.
+         * K L ' contem o combo L ' (aspas) e , . / contem o , . (print):
+         * o ZMK espera o timeout do combo maior antes de decidir. */
+
+        hjk {
+            bindings = <&kp LC(LA(F16))>;
+            key-positions = <17 18 19>;
+            require-prior-idle-ms = <150>;
+            layers = <0 4>;
+        };
+
+        klsqt {
+            bindings = <&kp LC(LA(F17))>;
+            key-positions = <19 20 21>;
+            require-prior-idle-ms = <150>;
+            layers = <0 4>;
+        };
+
+        commadotslash {
+            bindings = <&kp LC(LA(F18))>;
+            key-positions = <31 32 33>;
+            require-prior-idle-ms = <150>;
+            layers = <0 4>;
+        };
     };
 
     macros {
@@ -355,14 +382,18 @@
             bindings = <&kp Q>, <&kp EXCLAMATION>;
         };
 
-        /* Tecla -/~ : hold-preferred + sem prior-idle porque o hold (til pro ã)
-         * é usado no meio de palavra rápida ("não") — as regras globais do &mt
-         * (balanced + prior-idle 150) faziam sair "-a" ou "-" solto. */
+        /* Tecla -/~ : balanced, SEM prior-idle (26/10/2026; era hold-preferred).
+         * hold-preferred virava til com qualquer tecla apertada durante o "-",
+         * entao "-a" digitado corrido saia "ã". Balanced so da til se a letra
+         * for apertada E SOLTA com o "-" ainda pra baixo. Custo aceito: no "ã"
+         * o "a" precisa ser solto antes do "-".
+         * O prior-idle continua fora: foi ele (nas regras globais do &mt) que
+         * quebrava o "não" corrido, porque bloqueava o hold logo apos o "n". */
 
         til_mt: til_mt {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
