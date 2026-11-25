@@ -402,12 +402,19 @@
          * for apertada E SOLTA com o "-" ainda pra baixo. Custo aceito: no "ã"
          * o "a" precisa ser solto antes do "-".
          * O prior-idle continua fora: foi ele (nas regras globais do &mt) que
-         * quebrava o "não" corrido, porque bloqueava o hold logo apos o "n". */
+         * quebrava o "não" corrido, porque bloqueava o hold logo apos o "n".
+         *
+         * 25/11/2026: balanced -> tap-preferred. Balanced ainda dava til no
+         * rolamento: em "e-mail", o "m" apertado E solto antes de soltar o "-"
+         * virava "~m", entao era preciso soltar o "-" antes da letra seguinte.
+         * Tap-preferred decide so pelo tempo: soltou antes de 200ms = "-",
+         * qualquer que seja a tecla no meio. Til (pro "ã") = segurar o "-"
+         * por 200ms ou mais e tocar a letra. Til avulso segue no combo Q+W. */
 
         til_mt: til_mt {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
             bindings = <&kp>, <&kp>;
@@ -448,8 +455,8 @@
         default_layer {
             bindings = <
 &kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U  &kp I                    &kp O    &kp P
-&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp K_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K  &kp L    &kp SQT
-&kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 1 SEMI       &kp N           &kp M  &kp COMMA                &kp DOT  &kp SLASH
+&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp F18              &kp RETURN       &kp H           &kp J  &kp K                        &kp L    &kp SQT
+&kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 1 SEMI       &kp N           &kp M  &tap_key_hold_layer 5 COMMA  &kp DOT  &kp SLASH
 &mt LEFT_CONTROL ESCAPE  &kp TAB  &mkp MCLK       &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
             >;
 
@@ -501,13 +508,18 @@
          * alta ganha, um esbarrão no trackball armava a MOUSE e ela sobrescrevia
          * a Num (layer 1) que estava embaixo: segurando Space pra digitar
          * número, saía a LETRA (7/8/9 viram U/I/O). Com &trans, a MOUSE não
-         * tapa mais nada, cai pra camada de baixo, seja base ou Num. */
+         * tapa mais nada, cai pra camada de baixo, seja base ou Num.
+         *
+         * 25/11/2026: cliques desceram uma linha. Clique esquerdo saiu do J pro
+         * M, clique direito (mouse_letter) saiu do L pro ponto, e o segurar pra
+         * scroll saiu do K pra virgula (na base). J, K e L viraram letra pura.
+         * Na Num (camada 6, acima desta) M, virgula e ponto sao N1, N2 e N3. */
 
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mouse_letter MB2 L  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans               &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans                 &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mouse_letter MB2 DOT  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                         &trans
             >;
 
@@ -525,6 +537,12 @@
             sensor-bindings = <&rot_scroll SCRL_UP SCRL_DOWN>;
         };
 
+        /* 25/11/2026: Mute mora aqui (segurar Space + tecla interna esquerda),
+         * junto do volume no encoder. Era &kp K_MUTE na base, que e a tecla
+         * Mute do teclado HID (0x7F) e o macOS ignora; C_MUTE e a de consumo,
+         * a mesma do volume. Na base essa tecla virou F18 (ditado do T3 pelo
+         * Hammerspoon, ditado/enter.lua). */
+
         /* ÍNDICE 6, a mais alta. Declarada por último de propósito.
          *
          * Camada ativa mais alta ganha. Enquanto a Num era 1 e a automouse 4,
@@ -540,7 +558,7 @@
         Num {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                             &trans           &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY
-&trans  &trans  &trans  &trans  &trans  &trans      &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
+&trans  &trans  &trans  &trans  &trans  &kp C_MUTE  &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
 &trans  &trans  &trans  &trans  &trans  &trans      &kp COMMA      &kp DOT          &kp N1  &kp N2  &kp N3  &kp PLUS
 &trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
             >;
