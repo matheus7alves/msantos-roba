@@ -455,9 +455,9 @@
         default_layer {
             bindings = <
 &kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U  &kp I                    &kp O    &kp P
-&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp F18              &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K      &kp L    &kp SQT
+&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp C_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K      &kp L    &kp SQT
 &kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 1 SEMI       &kp N           &kp M  &tap_key_hold_layer 5 COMMA  &kp DOT  &kp SLASH
-&mt LEFT_CONTROL ESCAPE  &kp TAB  &mkp MCLK       &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
+&mt LEFT_CONTROL ESCAPE  &kp TAB  &kp F18         &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
@@ -537,7 +537,11 @@
             sensor-bindings = <&rot_scroll SCRL_UP SCRL_DOWN>;
         };
 
-        /* 25/11/2026: Mute mora aqui (segurar Space + tecla interna esquerda),
+        /* 25/11/2026 (2a rodada): Mute voltou pra base como C_MUTE e o F18 foi pro
+         * lugar do clique do meio (&mkp MCLK, abaixo do C), que o Matheus nao usa.
+         * Aqui na Num a tecla interna esquerda virou &trans (cai no Mute da base).
+         *
+         * 25/11/2026: Mute mora aqui (segurar Space + tecla interna esquerda),
          * junto do volume no encoder. Era &kp K_MUTE na base, que e a tecla
          * Mute do teclado HID (0x7F) e o macOS ignora; C_MUTE e a de consumo,
          * a mesma do volume. Na base essa tecla virou F18 (ditado do T3 pelo
@@ -558,7 +562,7 @@
         Num {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                             &trans           &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY
-&trans  &trans  &trans  &trans  &trans  &kp C_MUTE  &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
+&trans  &trans  &trans  &trans  &trans  &trans      &kp ENTER      &trans           &kp N4  &kp N5  &kp N6  &kp KP_SUBTRACT
 &trans  &trans  &trans  &trans  &trans  &trans      &kp COMMA      &kp DOT          &kp N1  &kp N2  &kp N3  &kp PLUS
 &trans  &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &kp KP_NUMBER_0                          &kp EQUAL
             >;
