@@ -455,7 +455,7 @@
         default_layer {
             bindings = <
 &kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U  &kp I                    &kp O    &kp P
-&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp F18              &kp RETURN       &kp H           &kp J  &kp K                        &kp L    &kp SQT
+&kp A                    &kp S    &kp D           &kp F     &kp G                               &kp F18              &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K      &kp L    &kp SQT
 &kp Z                    &kp X    &kp C           &kp V     &kp B                               &til_mt TILDE MINUS      &lt 1 SEMI       &kp N           &kp M  &tap_key_hold_layer 5 COMMA  &kp DOT  &kp SLASH
 &mt LEFT_CONTROL ESCAPE  &kp TAB  &mkp MCLK       &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
             >;
@@ -510,15 +510,15 @@
          * número, saía a LETRA (7/8/9 viram U/I/O). Com &trans, a MOUSE não
          * tapa mais nada, cai pra camada de baixo, seja base ou Num.
          *
-         * 25/11/2026: cliques desceram uma linha. Clique esquerdo saiu do J pro
-         * M, clique direito (mouse_letter) saiu do L pro ponto, e o segurar pra
-         * scroll saiu do K pra virgula (na base). J, K e L viraram letra pura.
+         * 25/11/2026: cliques duplicados uma linha abaixo. Clique esquerdo no J
+         * e no M, clique direito (mouse_letter) no L e no ponto, segurar pra
+         * scroll no K e na virgula (esses dois na base).
          * Na Num (camada 6, acima desta) M, virgula e ponto sao N1, N2 e N3. */
 
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans                 &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mouse_letter MB2 L    &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mouse_letter MB2 DOT  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                         &trans
             >;
