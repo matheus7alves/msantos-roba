@@ -442,6 +442,22 @@
             bindings = <&mo>, <&kp>;
         };
 
+        /* Layer-tap do Backspace (camada Signs, encoder = Delete/Backspace).
+         * 26/11/2026: igual ao lt_num, mais hold-while-undecided: a camada liga
+         * no PRESS, sem esperar os 200ms. Girar o encoder logo depois de
+         * apertar ja apaga, nunca manda seta. Soltou rapido sem outra tecla:
+         * camada desliga e sai Backspace normal. */
+
+        lt_bspc: lt_bspc {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_BSPC";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            hold-while-undecided;
+            bindings = <&mo>, <&kp>;
+        };
+
         til_dash: til_dash {
             compatible = "zmk,behavior-hold-tap";
             label = "TIL_DASH";
@@ -465,7 +481,7 @@
 &kp Q                    &kp W    &kp E           &kp R     &kp T                                                                     &kp Y           &kp U  &kp I                    &kp O    &kp P
 &kp A                    &kp S    &kp D           &kp F     &kp G                               &kp C_MUTE           &kp RETURN       &kp H           &kp J  &tap_key_hold_layer 5 K      &kp L    &kp SQT
 &kp Z                    &kp X    &kp C           &kp V     &kp B                               &kp MINUS                &lt 1 SEMI       &kp N           &kp M  &tap_key_hold_layer 5 COMMA  &kp DOT  &kp SLASH
-&mt LEFT_CONTROL ESCAPE  &kp TAB  &kp F18         &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt_num 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
+&mt LEFT_CONTROL ESCAPE  &kp TAB  &kp F18         &mkp MB1  &sk LEFT_COMMAND                    &lt_num 6 SPACE          &lt_bspc 2 BACKSPACE  &sk LEFT_SHIFT                                           &kp LG(LEFT_BRACKET)
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
